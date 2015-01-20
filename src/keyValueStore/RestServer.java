@@ -23,6 +23,10 @@ import java.util.logging.Logger;
 
 public class RestServer {
 
+    // MAX number of workers
+    private static final int MAX_WORKERS = 3;
+    // the workers' table
+    private Worker work[];
     File keyValPairs;
     String type;
     boolean success;
@@ -40,6 +44,13 @@ public class RestServer {
     public RestServer() throws IOException{
         this.parameters=new HashMap<>();
         this.keyValPairs=new File("keyVals");
+        work = new Worker[MAX_WORKERS];
+        // create workers and start them
+        for (int i = 0; i < MAX_WORKERS; i++) {
+            Worker w = new Worker();
+            work[i] = w;
+            w.start();
+        }
         if(!(this.keyValPairs.exists()))
         {
             try {
