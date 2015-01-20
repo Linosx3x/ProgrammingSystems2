@@ -150,7 +150,7 @@ public class RestServer {
             Logger.getLogger(RestServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //test
      class MyHandler implements HttpHandler {
         @Override
         public void handle(HttpExchange t) throws IOException {
